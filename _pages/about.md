@@ -1,9 +1,10 @@
 ---
-layout: archive
 excerpt: "About me"
 permalink: /
 author_profile: true
-redirect_from: [/about/] & [/about.html]
+redirect_from:
+  - /about/
+  - /about.html
 ---
 
 ## About me
