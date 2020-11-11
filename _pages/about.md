@@ -11,5 +11,5 @@ I am a Mechatronics Engineer and a M.Sc in Automatic Control, currently studying
 
 # Education
 -  Instituto Tecnológico de Querétaro 
-   B.Eng. in Mechatronics 
+B.Eng. in Mechatronics 
    Advisor [Professor Jöns Sánchez](https://mx.linkedin.com/in/dr-j%C3%B6ns-s%C3%A1nchez-893430bb)
