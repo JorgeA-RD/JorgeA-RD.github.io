@@ -13,16 +13,22 @@ I am a Mechatronics Engineer and a M.Sc in Automatic Control, currently studying
 
 Education
 ======
-* B.Eng. in Mechatronics, Instituto Tecnológico de Querétaro, 2011 - 2016
+* B.Eng. in Mechatronics 
+  - Instituto Tecnológico de Querétaro 
+  - 2011 - 2016
   - Advisor: [Professor Jöns Sánchez](https://mx.linkedin.com/in/dr-j%C3%B6ns-s%C3%A1nchez-893430bb)
-* M.S. in Automatic Control, Centro de Investigación y de Estudios Avanzados del IPN, 2017 - 2019
+* M.S. in Automatic Control
+  - Centro de Investigación y de Estudios Avanzados del IPN
+  - 2017 - 2019
   - Advisor: [Professor Wen Yu Liu](https://www.ctrl.cinvestav.mx/%7Eyuw/)
-* Ph.D in in Automatic Control, Centro de Investigación y de Estudios Avanzados del IPN, 2019 - present
+* Ph.D in in Automatic Control
+  - Centro de Investigación y de Estudios Avanzados del IPN
+  - 2019 - present
   - Advisor: [Professor Wen Yu Liu](https://www.ctrl.cinvestav.mx/%7Eyuw/)
 
 Work experience
 ======
-* ago 2015 - dic 2016: Intern ETIP
+* Ago 2015 - Dic 2016: Intern ETIP
   - GE Power
 
 * Summer 2015: Intern in Lean Challenge
