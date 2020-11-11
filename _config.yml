@@ -82,8 +82,7 @@ analytics:
 author:
   name             : "Jorge Ramírez"
   avatar           : "profile.png"
-  bio              : "I am a Mechatronics Engineer with a Master's and Ph.D. (currently studying) in Automatic Control.
-In my postgraduate studies, I have focused on the development of intelligent control algorithms in Machine Learning to be applied in robots to achieve autonomy in tasks."
+  bio              : "I am a Mechatronics Engineer with a Master's and Ph.D. (currently studying) in Automatic Control."
   location         : "CDMX, México"
   employer         :
   pubmed           : #"https://www.ncbi.nlm.nih.gov/pubmed/?term=john+snow"
