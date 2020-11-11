@@ -1,7 +1,6 @@
 ---
 title: "Human Behavior Learning in Joint Space Using Dynamic Time Warping and Neural Networks"
 collection: publications
-permalink: /publication/2009-10-01-paper-title-number-1
 excerpt: 'The usual human behavior '
 date: 2019
 venue: '2019 16th International Conference on Electrical Engineering, Computing Science and Automatic Control (CCE)'
