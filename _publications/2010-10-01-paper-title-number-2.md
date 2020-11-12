@@ -1,15 +1,12 @@
 ---
-title: "Title Number 2"
+title: "Aprendizaje del Comportamiento Humano en el Espacio Articular del Robot Utilizando Redes Neuronales"
 collection: publications
-permalink: /publication/2010-10-01-paper-title-number-2
-excerpt: 'This paper is about the number 2. The number 3 is left for future work.'
-date: 2010-10-01
-venue: 'Journal 1'
-paperurl: 'http://academicpages.github.io/files/paper2.pdf'
-citation: 'Your Name, You. (2010). &quot;Paper Title Number 2.&quot; <i>Journal 1</i>. 1(2).'
+excerpt: 'Master Disertation (in spanish)'
+date: 2019-08-30
+venue: 'Centro de Investigación y de Estudios Avanzados del IPN'
+paperurl: 'https://www.ctrl.cinvestav.mx/%7Eyuw/pdf/MaTesJR.pdf'
 ---
-Text text text.
 
-[Download paper here](http://academicpages.github.io/files/paper2.pdf)
+[Download paper here](https://www.ctrl.cinvestav.mx/%7Eyuw/pdf/MaTesJR.pdf)
 
-Recommended citation: Your Name, You. (2010). "Paper Title Number 2." <i>Journal 1</i>. 1(2).
+
