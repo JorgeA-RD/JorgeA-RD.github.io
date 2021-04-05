@@ -9,7 +9,7 @@ redirect_from:
 
 {% include base_path %}
 
-I am a Mechatronics Engineer and a M.Sc in Automatic Control, currently studying a Ph.D. in Automatic Control under the supervision of [Professor Wen Yu Liu](https://www.ctrl.cinvestav.mx/%7Eyuw/) at the [CINVESTAV-IPN](https://www.cinvestav.mx/) in the [DCA](https://www.ctrl.cinvestav.mx/). My research interests include Robotics, Automatic Intelligent Control based on Machine Learning and Humans in the Loop. 
+I am a Mechatronics Engineer and a M.Sc in Automatic Control, currently studying a Ph.D. in Automatic Control under the supervision of [Professor Wen Yu Liu](https://www.ctrl.cinvestav.mx/%7Eyuw/) at the [Centro de Investigación y de Estudios Avanzados del IPN (CINVESTAV-IPN)](https://www.cinvestav.mx/) in the [Departamento de Control Automático (DCA)](https://www.ctrl.cinvestav.mx/). My research interests include Robotics, Intelligent Control based on Machine Learning and Humans in the Loop. 
 
 Education
 ======
