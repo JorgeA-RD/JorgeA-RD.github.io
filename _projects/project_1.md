@@ -8,8 +8,7 @@ In this project, we seek to solve the autonomous path planning of a redundant ro
 
 ### Stages
 
-* Dynamic Time Warping with Neural Networks approach using a 7 DoF physical robot.  
-    * Ramírez, Jorge, and Wen Yu. [Human Behavior Learning in Joint Space Using Dynamic Time Warping and Neural Networks.](https://ieeexplore.ieee.org/abstract/document/8884501/) 2019                    16th International Conference on Electrical Engineering, Computing Science and Automatic Control (CCE). IEEE, 2019. 
+* Dynamic Time Warping with Neural Networks approach using a 7 DoF physical robot. [(Published results.)](https://ieeexplore.ieee.org/abstract/document/8884501/) 
           
 * Common Deep Reinforcement Learning approach using a 7 DoF simulated robot. (WIP)
 
