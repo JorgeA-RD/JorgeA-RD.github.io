@@ -10,7 +10,7 @@ author_profile: true
 International Conferences
 ======
 
-{% for post in site.publications.int_conf reversed %}
+{% for post in site.publications reversed %}
   {% include archive-single.html %}
 {% endfor %}
 
