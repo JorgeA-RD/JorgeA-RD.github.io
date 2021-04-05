@@ -12,13 +12,4 @@ author_profile: true
 
 ---
 
-International Journals
-======
-
-{% for post in site.publications reversed %}
-  {% include archive-single.html %}
-{% endfor %}
-
-
-
 
