@@ -1,6 +1,6 @@
 ---
 layout: archive
-title: "Disertations"
+title: "Published Papers"
 permalink: /publications/
 author_profile: true
 ---
@@ -15,7 +15,7 @@ author_profile: true
 International Journals
 ======
 
-{% for post in site.publications.int_jour reversed %}
+{% for post in site.publications reversed %}
   {% include archive-single.html %}
 {% endfor %}
 
