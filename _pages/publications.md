@@ -1,14 +1,13 @@
 ---
 layout: archive
-title: "Published Papers"
+title: "Publications"
 permalink: /publications/
 author_profile: true
 ---
 
-{% include base_path %}
-{% for post in site.publications reversed %}
-  {% include archive-single.html %}
-{% endfor %}
+### Conference Papers
+
+1. Ramírez, Jorge, and Wen Yu. [Human Behavior Learning in Joint Space Using Dynamic Time Warping and Neural Networks.](https://ieeexplore.ieee.org/abstract/document/8884501/) 2019 16th International Conference on Electrical Engineering, Computing Science and Automatic Control (CCE). IEEE, 2019.
 
 ---
 
