@@ -1,7 +1,9 @@
 ---
-title: "Portfolio item number 1"
-excerpt: "Short description of portfolio item number 1<br/><img src='/images/500x300.png'>"
+title: "Autonomous Robot Path Planning Learning"
+excerpt: "In this project, we seek to solve the autonomous path planning of a redundant robotic arm, which is able to reach a point in the robot's workspace with multiple joint positions. Therefore there is no analytical solution for the inverse kinematics of the robot. <br/><img src='/images/500x300.png'>"
 collection: projects
 ---
 
-This is an item in your portfolio. It can be have images or nice text. If you name the file .md, it will be parsed as markdown. If you name the file .html, it will be parsed as HTML. 
+* Dynamic Time Warping with Neural Networks approach using a 7 DoF physical robot. 
+* Common Deep Reinforcement Learning approach using a 7 DoF simulated robot. (WIP)
+* Reinforcement Learning from Demonstrations approach using a 7 DoF simulated robot. (WIP)
