@@ -26,6 +26,6 @@ International Journals
 Disertations
 ======
 
-{% for post in site.publications.disertation reversed %}
+{% for post in site.publications/disertation reversed %}
   {% include archive-single.html %}
 {% endfor %}
