@@ -1,0 +1,17 @@
+[
+  {
+    "id": "jorge-ramirez",
+    "name": "Jorge Armando Ramírez Díaz",
+    "title": "Postdoctoral Research Fellow, Universidad Autónoma de Querétaro",
+    "role": "Researcher",
+    "bio": "Jorge Armando Ramírez Díaz is a postdoctoral research fellow at the Universidad Autónoma de Querétaro. His research focuses on artificial intelligence and robotics, with emphasis on reinforcement learning, imitation learning, human motor intention, and machine learning methods for robotic systems.",
+    "avatar": "/jorge-ramirez.jpeg",
+    "email": "jorge.armando.ramirez.diaz@uaq.edu.mx",
+    "website": "https://sites.google.com/view/jorgeram",
+    "github": "https://github.com/JorgeA-RD",
+    "linkedin": "https://www.linkedin.com/in/jorge-rd/",
+    "google_scholar": "https://scholar.google.com/citations?user=IeO98t0AAAAJ&hl=en",
+    "sortOrder": 0,
+    "alumni": false
+  }
+]

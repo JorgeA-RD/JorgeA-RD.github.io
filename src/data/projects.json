@@ -1,0 +1,38 @@
+[
+  {
+    "id": "surface-emg-human-motor-intention",
+    "title": "Surface EMG-Based Wrist and Hand Estimation",
+    "description": "Postdoctoral research at the Universidad Autónoma de Querétaro focused on continuous surface electromyography-based wrist and hand estimation, system identification, and human motor intention modeling.",
+    "year": 2026,
+    "status": "Active",
+    "authors": ["jorge-ramirez"],
+    "heroImage": "/src/assets/blog-placeholder-2.jpg"
+  },
+  {
+    "id": "reinforcement-learning-from-demonstrations",
+    "title": "Reinforcement Learning from Expert Demonstrations",
+    "description": "Development of reinforcement learning and imitation learning methods that incorporate expert demonstrations to guide exploration and improve robot behavior learning.",
+    "year": 2024,
+    "status": "Ongoing line",
+    "authors": ["jorge-ramirez"],
+    "heroImage": "/src/assets/blog-placeholder-3.jpg"
+  },
+  {
+    "id": "robust-multi-agent-rl",
+    "title": "Robust Multi-Agent Policy Optimization",
+    "description": "Collaboration on robust multi-agent policy optimization via reinforcement learning under model uncertainty.",
+    "year": 2026,
+    "status": "Manuscript in progress",
+    "authors": ["jorge-ramirez"],
+    "heroImage": "/src/assets/blog-placeholder-4.jpg"
+  },
+  {
+    "id": "traffic-accident-data-analysis",
+    "title": "Traffic Accident Data Analysis",
+    "description": "Data analysis project with accident database records, focused on extracting useful metrics and patterns for applied research.",
+    "year": 2026,
+    "status": "Exploratory collaboration",
+    "authors": ["jorge-ramirez"],
+    "heroImage": "/src/assets/blog-placeholder-5.jpg"
+  }
+]
