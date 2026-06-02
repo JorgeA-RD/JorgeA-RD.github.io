@@ -5,4 +5,4 @@ pubDate: '2026-02-01'
 tags: ['postdoc', 'UAQ', 'research']
 ---
 
-I am currently a postdoctoral research fellow at the Universidad Autónoma de Querétaro, working on artificial intelligence and robotics with emphasis on surface EMG-based wrist and hand estimation and human motor intention modeling.
+I have started working as a postdoctoral research fellow at the Universidad Autónoma de Querétaro, focusing on artificial intelligence and robotics, with an emphasis on reinforcement learning and world models applied to sEMG-based prosthetic hand control.
