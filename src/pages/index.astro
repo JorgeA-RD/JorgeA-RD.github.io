@@ -4,13 +4,18 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { SITE_TITLE, SITE_DESCRIPTION, SOCIAL_LINKS } from '../consts';
 import { Image } from 'astro:assets';
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import bibFileRaw from '../data/publications.bib?raw';
 import { url } from '../utils/paths';
 
-const posts = (await getCollection('blog')).sort(
+const postEntries = (await getCollection('blog')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 ).slice(0, 3);
+
+const posts = await Promise.all(postEntries.map(async (post) => {
+    const { Content } = await render(post);
+    return { post, Content };
+}));
 
 interface Author {
 	first: string;
@@ -134,6 +139,42 @@ const formatAuthor = (auth: Author) => auth.first ? `${auth.first} ${auth.last}`
             }
             .identifier-list li { margin-bottom: 0.65rem; }
             .identifier-list a { font-weight: 600; }
+            .news-list {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+            .news-item {
+                margin-bottom: 1.5rem;
+                padding-bottom: 1.5rem;
+                border-bottom: 1px dashed var(--color-border);
+            }
+            .news-item:last-child { border-bottom: none; }
+            .news-title {
+                display: block;
+                font-family: var(--font-serif);
+                font-size: 1.1rem;
+                font-weight: 600;
+                color: var(--color-text-main);
+                margin-bottom: 0.25rem;
+            }
+            .news-date {
+                color: var(--color-text-muted);
+                text-transform: uppercase;
+                font-size: 0.8rem;
+            }
+            .news-body {
+                color: var(--color-text-muted);
+                line-height: 1.65;
+                margin-top: 0.75rem;
+                font-size: 0.98rem;
+            }
+            .news-body :global(p) {
+                margin: 0 0 0.75rem;
+            }
+            .news-body :global(p:last-child) {
+                margin-bottom: 0;
+            }
 			@media (max-width: 768px) {
 				.hero { flex-direction: column-reverse; text-align: center; padding: 2rem 0; gap: 2rem; }
                 .hero-image img { width: 200px; height: 200px; }
@@ -207,15 +248,16 @@ const formatAuthor = (auth: Author) => auth.first ? `${auth.first} ${auth.last}`
 
                 <section>
                     <h2 style="margin-top: 0;">News</h2>
-                    <ul style="list-style: none; padding: 0;">
-                        {posts.map((post) => (
-                            <li style="margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px dashed var(--color-border);">
-                                <a href={url(`/blog/${post.id}/`)} style="display: block; font-family: var(--font-serif); font-size: 1.1rem; font-weight: 600; color: var(--color-text-main); margin-bottom: 0.25rem;">
-                                    {post.data.title}
-                                </a>
-                                <small style="color: var(--color-text-muted); text-transform: uppercase; font-size: 0.8rem;">
+                    <ul class="news-list">
+                        {posts.map(({ post, Content }) => (
+                            <li class="news-item">
+                                <span class="news-title">{post.data.title}</span>
+                                <small class="news-date">
                                     {post.data.pubDate.toLocaleDateString('en-us', { year: 'numeric', month: 'short', day: 'numeric' })}
                                 </small>
+                                <div class="news-body">
+                                    <Content />
+                                </div>
                             </li>
                         ))}
                     </ul>
