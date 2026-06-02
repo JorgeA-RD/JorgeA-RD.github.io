@@ -2,7 +2,7 @@
 // You can import this data from anywhere in your site by using the `import` keyword.
 
 export const SITE_TITLE = 'Jorge Armando Ramírez Díaz';
-export const SITE_DESCRIPTION = 'Academic portfolio of Jorge Armando Ramírez Díaz: artificial intelligence, robotics, reinforcement learning, and human motor intention.';
+export const SITE_DESCRIPTION = 'Postdoctoral Research Fellow at UAQ working on artificial intelligence, robotics, reinforcement learning, and human motor intention.';
 
 export const CV_URL = '/cv-jorge-armando-ramirez-diaz.pdf';
 
@@ -18,7 +18,7 @@ export const CONTACT = {
   ],
 };
 
-export type SocialIcon = 'website' | 'scholar' | 'email' | 'github' | 'linkedin' | 'twitter';
+export type SocialIcon = 'website' | 'scholar' | 'wos' | 'orcid' | 'researchgate' | 'email' | 'github' | 'linkedin' | 'twitter' | 'instagram';
 
 export const SOCIAL_LINKS: ReadonlyArray<{
   label: string;
@@ -33,12 +33,17 @@ export const SOCIAL_LINKS: ReadonlyArray<{
   {
     label: 'ORCID',
     href: 'https://orcid.org/0000-0002-9606-2526',
-    icon: 'website',
+    icon: 'orcid',
+  },
+  {
+    label: 'Web of Science ResearcherID: ABD-2358-2022',
+    href: 'https://www.webofscience.com/wos/author/record/ABD-2358-2022',
+    icon: 'wos',
   },
   {
     label: 'ResearchGate',
     href: 'https://www.researchgate.net/profile/Jorge-Ramirez-68',
-    icon: 'website',
+    icon: 'researchgate',
   },
   {
     label: 'GitHub',
@@ -58,7 +63,7 @@ export const SOCIAL_LINKS: ReadonlyArray<{
   {
     label: 'Instagram / El Robot Barato',
     href: 'https://www.instagram.com/robot_barato/',
-    icon: 'website',
+    icon: 'instagram',
   },
   {
     label: 'Email',
