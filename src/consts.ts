@@ -1,8 +1,8 @@
 // Place any global data in this file.
 // You can import this data from anywhere in your site by using the `import` keyword.
 
-export const SITE_TITLE = 'Jorge Armando Ramírez Díaz';
-export const SITE_DESCRIPTION = 'Postdoctoral Research Fellow at UAQ working on artificial intelligence, robotics, reinforcement learning, and human motor intention.';
+export const SITE_TITLE = 'Jorge Ramirez';
+export const SITE_DESCRIPTION = 'Postdoctoral Research Fellow at UAQ.';
 
 export const CV_URL = '/cv-jorge-armando-ramirez-diaz.pdf';
 
@@ -36,7 +36,7 @@ export const SOCIAL_LINKS: ReadonlyArray<{
     icon: 'orcid',
   },
   {
-    label: 'Web of Science ResearcherID: ABD-2358-2022',
+    label: 'Web of Science',
     href: 'https://www.webofscience.com/wos/author/record/ABD-2358-2022',
     icon: 'wos',
   },
@@ -56,12 +56,12 @@ export const SOCIAL_LINKS: ReadonlyArray<{
     icon: 'linkedin',
   },
   {
-    label: 'X / El Robot Barato',
+    label: 'X',
     href: 'https://x.com/robot_barato',
     icon: 'twitter',
   },
   {
-    label: 'Instagram / El Robot Barato',
+    label: 'Instagram',
     href: 'https://www.instagram.com/robot_barato/',
     icon: 'instagram',
   },
