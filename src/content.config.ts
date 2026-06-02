@@ -4,7 +4,7 @@ import { glob } from 'astro/loaders';
 type SchemaContext = { image: () => any };
 
 const blog = defineCollection({
-	// Load Markdown and MDX files in the `src/content/blog/` directory.
+	// Load Markdown and MDX news update files in the `src/content/blog/` directory.
 	loader: glob({ base: './src/content/blog', pattern: '**/*.{md,mdx}' }),
 	// Type-check frontmatter using a schema
 	schema: ({ image }: SchemaContext) =>
