@@ -4,8 +4,6 @@
 export const SITE_TITLE = 'Jorge Ramirez';
 export const SITE_DESCRIPTION = 'Postdoctoral Research Fellow at UAQ.';
 
-export const CV_URL = '/cv-jorge-armando-ramirez-diaz.pdf';
-
 export const CONTACT = {
   organization: 'Universidad Autónoma de Querétaro',
   addressLines: [

@@ -1,0 +1,138 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE } from '../consts';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`Activities | ${SITE_TITLE}`} description="Academic activities, service, memberships, reviewing, and talks." />
+		<style>
+			.activities-page {
+				max-width: 850px;
+				margin: 0 auto;
+			}
+
+			.activities-intro {
+				margin-bottom: 2.5rem;
+			}
+
+			.activities-intro p {
+				color: var(--color-text-muted);
+				font-size: 1.05rem;
+				line-height: 1.7;
+			}
+
+			.activity-section {
+				margin-top: 2.5rem;
+				padding-top: 1.75rem;
+				border-top: 1px solid var(--color-border);
+			}
+
+			.activity-section h2 {
+				font-size: 1.45rem;
+				margin: 0 0 1.1rem;
+			}
+
+			.activity-list {
+				list-style: none;
+				padding: 0;
+				margin: 0;
+				display: grid;
+				gap: 1rem;
+			}
+
+			.activity-item {
+				padding-left: 1rem;
+				border-left: 3px solid var(--color-accent-light);
+			}
+
+			.activity-item h3 {
+				font-size: 1rem;
+				margin: 0 0 0.25rem;
+				color: var(--color-text-main);
+			}
+
+			.activity-item p {
+				margin: 0;
+				color: var(--color-text-muted);
+				font-size: 0.95rem;
+				line-height: 1.55;
+			}
+
+			.activity-meta {
+				color: var(--color-accent);
+				font-size: 0.85rem;
+				font-weight: 700;
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main class="activities-page">
+			<section class="activities-intro">
+				<h1>Activities</h1>
+				<p>Academic service, professional memberships, conference participation, reviewing, and invited talks.</p>
+			</section>
+
+			<section class="activity-section">
+				<h2>Professional Societies</h2>
+				<ul class="activity-list">
+					<li class="activity-item">
+						<h3>LatinX in AI (LXAI)</h3>
+						<p><span class="activity-meta">Member</span> · 2023–Present</p>
+					</li>
+					<li class="activity-item">
+						<h3>Mexican Academy of Computation</h3>
+						<p><span class="activity-meta">Adherent member</span> · 2025–Present</p>
+					</li>
+				</ul>
+			</section>
+
+			<section class="activity-section">
+				<h2>Conference Participation</h2>
+				<ul class="activity-list">
+					<li class="activity-item">
+						<h3>17th International Conference on Electrical Engineering, Computing Science and Automatic Control (CCE 2020)</h3>
+						<p><span class="activity-meta">Organizing Committee / Volunteer</span> · Mexico City, Mexico · November 2020</p>
+					</li>
+					<li class="activity-item">
+						<h3>18th IEEE International Conference on Automation Science and Engineering (IEEE CASE 2022)</h3>
+						<p><span class="activity-meta">Organizing Committee / Volunteer</span> · Mexico City, Mexico · August 2022</p>
+					</li>
+				</ul>
+			</section>
+
+			<section class="activity-section">
+				<h2>Reviewer Service</h2>
+				<ul class="activity-list">
+					<li class="activity-item">
+						<h3>NeurIPS Workshop LXAI</h3>
+						<p>2023, 2024, 2025</p>
+					</li>
+					<li class="activity-item">
+						<h3>IEEE Transactions on Neural Networks and Learning Systems</h3>
+						<p>2024–Present</p>
+					</li>
+					<li class="activity-item">
+						<h3>Engineering Applications of Artificial Intelligence</h3>
+						<p>2024–Present</p>
+					</li>
+				</ul>
+			</section>
+
+			<section class="activity-section">
+				<h2>Talks</h2>
+				<ul class="activity-list">
+					<li class="activity-item">
+						<h3>Beyond Code: Exploring AI in Robotics and Computer Vision</h3>
+						<p><span class="activity-meta">Spanish</span> · 3er Congreso Internacional Computación e Ingeniería de Software (CinSoft 2023), Tlahuelilpan, Hidalgo, Mexico · October 2023</p>
+					</li>
+				</ul>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>
