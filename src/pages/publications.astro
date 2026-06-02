@@ -18,12 +18,18 @@ interface BibEntry {
     authors: Author[];
 }
 
+interface PublicationSection {
+    title: string;
+    prefix: string;
+    entries: BibEntry[];
+}
+
 function parseBibTeX(input: string): BibEntry[] {
     const entries: BibEntry[] = [];
     const rawEntries = input.split(/@(\w+)\s*\{/g).slice(1);
 
     for (let i = 0; i < rawEntries.length; i += 2) {
-        const type = rawEntries[i].trim();
+        const type = rawEntries[i].trim().toLowerCase();
         const body = rawEntries[i+1];
         if (!body) continue;
 
@@ -61,12 +67,72 @@ function parseBibTeX(input: string): BibEntry[] {
     return entries;
 }
 
-const publications = parseBibTeX(bibFileRaw).sort((a, b) => {
-    return (parseInt(b.fields.year) || 0) - (parseInt(a.fields.year) || 0);
-});
+const clean = (value?: string) => (value || '').replace(/[{}]/g, '');
 
 const formatAuthor = (auth: Author) => {
     return auth.first ? `${auth.first} ${auth.last}` : auth.last;
+};
+
+const yearValue = (entry: BibEntry) => parseInt(entry.fields.year) || 0;
+const sortNewestFirst = (entries: BibEntry[]) => entries.sort((a, b) => yearValue(b) - yearValue(a));
+
+const allPublications = parseBibTeX(bibFileRaw);
+
+const sections: PublicationSection[] = [
+    {
+        title: 'Journal Articles',
+        prefix: 'J',
+        entries: sortNewestFirst(allPublications.filter(entry => entry.type === 'article')),
+    },
+    {
+        title: 'Conference Papers',
+        prefix: 'C',
+        entries: sortNewestFirst(allPublications.filter(entry => entry.type === 'inproceedings' || entry.type === 'conference')),
+    },
+    {
+        title: 'Preprints',
+        prefix: 'P',
+        entries: sortNewestFirst(allPublications.filter(entry => entry.type === 'unpublished' || entry.type === 'preprint')),
+    },
+    {
+        title: 'Theses',
+        prefix: 'T',
+        entries: sortNewestFirst(allPublications.filter(entry => entry.type === 'phdthesis' || entry.type === 'mastersthesis')),
+    },
+].filter(section => section.entries.length > 0);
+
+const getVenue = (entry: BibEntry) => clean(
+    entry.fields.journal ||
+    entry.fields.booktitle ||
+    entry.fields.publisher ||
+    entry.fields.school ||
+    entry.fields.note ||
+    'Preprint'
+);
+
+const getPrimaryLink = (entry: BibEntry) => {
+    if (entry.fields.doi) return `https://doi.org/${entry.fields.doi}`;
+    if (entry.fields.url) return entry.fields.url;
+    if (entry.fields.pdf) return entry.fields.pdf;
+    return '';
+};
+
+const makeBibTeX = (entry: BibEntry) => {
+    const lines = [
+        `@${entry.type}{${entry.key},`,
+        `  title={${entry.fields.title}},`,
+        `  author={${entry.fields.author || ''}},`,
+    ];
+
+    if (entry.fields.journal) lines.push(`  journal={${entry.fields.journal}},`);
+    if (entry.fields.booktitle) lines.push(`  booktitle={${entry.fields.booktitle}},`);
+    if (entry.fields.school) lines.push(`  school={${entry.fields.school}},`);
+    if (entry.fields.note) lines.push(`  note={${entry.fields.note}},`);
+    if (entry.fields.doi) lines.push(`  doi={${entry.fields.doi}},`);
+    lines.push(`  year={${entry.fields.year}}`);
+    lines.push('}');
+
+    return lines.join('\n');
 };
 ---
 
@@ -79,68 +145,57 @@ const formatAuthor = (auth: Author) => {
 		<Header />
 		<main>
 			<h1>Publications</h1>
-			<p>Selected peer-reviewed publications.</p>
+			<p>Selected academic publications, organized by type and listed with the most recent work first within each section.</p>
 			
-			<div class="publication-list">
-				{publications.map((entry) => (
-					<article class="publication-item">
-						<span class="pub-title">
-                            {entry.fields.title.replace(/[{}]/g, '')}
-                        </span>
-						
-						<div class="pub-authors">
-							{entry.authors && entry.authors.map((auth, i) => (
-								<>
-                                    <AuthorLink nameOrSlug={formatAuthor(auth)} />
-                                    {i < entry.authors.length - 1 ? ', ' : ''}
-                                </>
-							))}
-						</div>
-						
-						<div class="pub-venue">
-                            {
-                                (entry.fields.journal || 
-                                entry.fields.booktitle || 
-                                entry.fields.publisher || 
-                                entry.fields.school || 
-                                "Preprint").replace(/[{}]/g, '')
-                            }
-                            {entry.fields.year && <span> ({entry.fields.year})</span>}
-                        </div>
-
-						<div class="pub-links" style="margin-top: 0.5rem; font-size: 0.9rem;">
-							{entry.fields.pdf ? (
-                                <a href={entry.fields.pdf} target="_blank" class="btn-outline" style="padding: 2px 6px; font-size: 0.8rem;">
-                                    PDF
-                                </a>
-                            ) : entry.fields.url ? (
-                                <a href={entry.fields.url} target="_blank" class="btn-outline" style="padding: 2px 6px; font-size: 0.8rem;">
-                                    URL
-                                </a>
-                            ) : null}
-                            
-							{entry.fields.doi && <a href={`https://doi.org/${entry.fields.doi}`} target="_blank" style="margin-left: 0.5rem;">DOI</a>}
-                            
-                            <details name="bibtex" style="display: inline-block; margin-left: 0.5rem;">
-                                <summary style="font-size: 0.8rem; cursor: pointer; color: var(--color-accent);">BibTeX</summary>
-                                <div class="bibtex-panel" style="position: absolute; background-color: var(--color-bg-offset); border: 1px solid var(--color-border); color: var(--color-text-main); padding: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border-radius: 8px; z-index: 10; width: 300px; max-height: 250px; overflow-y: auto; overflow-x: auto; margin-top: 0.5rem;">
-                                    <div style="display: flex; justify-content: flex-end; margin-bottom: 8px;">
-                                        <button class="copy-bibtex-btn" data-bibtex={`@${entry.type}{${entry.key},\n  title={${entry.fields.title}},\n  author={${entry.fields.author || ''}},\n  year={${entry.fields.year}}\n}`} style="background: none; border: none; cursor: pointer; color: var(--color-text-muted); font-size: 0.75rem; display: flex; align-items: center; gap: 4px; padding: 0;">
-                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                                            <span class="copy-text">Copy</span>
-                                        </button>
+            {sections.length > 0 ? sections.map((section) => (
+                <section class="publication-section">
+                    <h2>{section.title}</h2>
+                    <ol class="publication-list compact-publications">
+                        {section.entries.map((entry, index) => {
+                            const primaryLink = getPrimaryLink(entry);
+                            const bibtex = makeBibTeX(entry);
+                            return (
+                                <li class="publication-item compact-publication">
+                                    <span class="pub-number">[{section.prefix}{index + 1}]</span>
+                                    <div class="pub-content">
+                                        <span class="pub-title">{clean(entry.fields.title)}</span>
+                                        <div class="pub-authors">
+                                            {entry.authors && entry.authors.map((auth, i) => (
+                                                <>
+                                                    <AuthorLink nameOrSlug={formatAuthor(auth)} />
+                                                    {i < entry.authors.length - 1 ? ', ' : ''}
+                                                </>
+                                            ))}
+                                        </div>
+                                        <div class="pub-venue">
+                                            {getVenue(entry)}{entry.fields.year && <span>, {entry.fields.year}</span>}
+                                        </div>
+                                        <div class="pub-links">
+                                            {primaryLink && <a href={primaryLink} target="_blank" rel="noopener noreferrer">Article</a>}
+                                            {entry.fields.doi && <a href={`https://doi.org/${entry.fields.doi}`} target="_blank" rel="noopener noreferrer">DOI</a>}
+                                            {entry.fields.pdf && <a href={entry.fields.pdf} target="_blank" rel="noopener noreferrer">PDF</a>}
+                                            <details name="bibtex" class="bibtex-details">
+                                                <summary>BibTeX</summary>
+                                                <div class="bibtex-panel">
+                                                    <div class="bibtex-actions">
+                                                        <button class="copy-bibtex-btn" data-bibtex={bibtex}>
+                                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                                                            <span class="copy-text">Copy</span>
+                                                        </button>
+                                                    </div>
+                                                    <pre>{bibtex}</pre>
+                                                </div>
+                                            </details>
+                                        </div>
                                     </div>
-                                    <pre style="margin: 0; font-size: 0.7rem; white-space: pre-wrap; word-break: break-all;">{`@${entry.type}{${entry.key},\n  title={${entry.fields.title}},\n  author={${entry.fields.author || ''}},\n  year={${entry.fields.year}}\n}`}</pre>
-                                </div>
-                            </details>
-						</div>
-					</article>
-				))}
-
-                {publications.length === 0 && (
-                    <p>No publications found.</p>
-                )}
-			</div>
+                                </li>
+                            );
+                        })}
+                    </ol>
+                </section>
+            )) : (
+                <p>No publications found.</p>
+            )}
 		</main>
 		<Footer />
 
@@ -163,17 +218,15 @@ const formatAuthor = (auth: Author) => {
 			const copyBtns = document.querySelectorAll('.copy-bibtex-btn');
 			copyBtns.forEach(btn => {
 				btn.addEventListener('click', async (e) => {
-					e.preventDefault(); // prevent details from toggling if button triggers
+					e.preventDefault();
 					const bibtex = btn.getAttribute('data-bibtex');
 					const textSpan = btn.querySelector('.copy-text');
 					if (bibtex && textSpan) {
 						try {
 							await navigator.clipboard.writeText(bibtex);
 							textSpan.textContent = 'Copied!';
-                            btn.setAttribute('style', 'background: none; border: none; cursor: pointer; color: var(--color-accent); font-size: 0.75rem; display: flex; align-items: center; gap: 4px; padding: 0;');
 							setTimeout(() => {
 								textSpan.textContent = 'Copy';
-                                btn.setAttribute('style', 'background: none; border: none; cursor: pointer; color: var(--color-text-muted); font-size: 0.75rem; display: flex; align-items: center; gap: 4px; padding: 0;');
 							}, 2000);
 						} catch (err) {
 							console.error('Failed to copy', err);

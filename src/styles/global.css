@@ -305,10 +305,45 @@ a:hover {
 }
 
 /* Publication List */
+.publication-section {
+	margin-top: 2.25rem;
+}
+
+.publication-section h2 {
+	font-size: 1.35rem;
+	margin-bottom: 0.9rem;
+}
+
+.publication-list {
+	padding: 0;
+}
+
 .publication-item {
 	margin-bottom: 1.5rem;
 	padding-bottom: 1.5rem;
 	border-bottom: 1px solid var(--color-border);
+}
+
+.compact-publications {
+	list-style: none;
+}
+
+.compact-publication {
+	display: grid;
+	grid-template-columns: 3.25rem 1fr;
+	gap: 0.75rem;
+	margin-bottom: 0.95rem;
+	padding-bottom: 0.95rem;
+	font-size: 0.92rem;
+	line-height: 1.42;
+}
+
+.pub-number {
+	font-family: var(--font-mono);
+	font-size: 0.82rem;
+	font-weight: 700;
+	color: var(--color-accent);
+	padding-top: 0.1rem;
 }
 
 .pub-title {
@@ -318,14 +353,83 @@ a:hover {
 	display: block;
 }
 
+.compact-publication .pub-title {
+	font-size: 0.98rem;
+}
+
 .pub-authors {
-	margin: 0.25rem 0;
+	margin: 0.2rem 0;
 	color: var(--color-text-muted);
 }
 
 .pub-venue {
 	font-style: italic;
 	color: var(--color-text-muted);
+}
+
+.pub-links {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0.65rem;
+	margin-top: 0.28rem;
+	font-size: 0.82rem;
+}
+
+.bibtex-details {
+	display: inline-block;
+	position: relative;
+}
+
+.bibtex-details summary {
+	cursor: pointer;
+	color: var(--color-accent);
+	list-style: none;
+}
+
+.bibtex-details summary::-webkit-details-marker {
+	display: none;
+}
+
+.bibtex-panel {
+	position: absolute;
+	background-color: var(--color-bg-offset);
+	border: 1px solid var(--color-border);
+	color: var(--color-text-main);
+	padding: 10px;
+	box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+	border-radius: 8px;
+	z-index: 10;
+	width: min(520px, 82vw);
+	max-height: 250px;
+	overflow-y: auto;
+	overflow-x: auto;
+	margin-top: 0.5rem;
+}
+
+.bibtex-actions {
+	display: flex;
+	justify-content: flex-end;
+	margin-bottom: 8px;
+}
+
+.copy-bibtex-btn {
+	background: none;
+	border: none;
+	cursor: pointer;
+	color: var(--color-text-muted);
+	font-size: 0.75rem;
+	display: flex;
+	align-items: center;
+	gap: 4px;
+	padding: 0;
+}
+
+.bibtex-panel pre {
+	margin: 0;
+	font-size: 0.7rem;
+	white-space: pre-wrap;
+	word-break: break-word;
 }
 
 /* Team Card */
