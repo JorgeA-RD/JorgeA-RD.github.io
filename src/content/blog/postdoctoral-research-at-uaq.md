@@ -1,7 +1,7 @@
 ---
 title: 'Postdoctoral research at UAQ'
 description: 'Current postdoctoral work at the Universidad Autónoma de Querétaro focuses on artificial intelligence, robotics, and surface EMG-based human motor intention.'
-pubDate: '2026-06-01'
+pubDate: '2026-02-01'
 tags: ['postdoc', 'UAQ', 'research']
 ---
 
