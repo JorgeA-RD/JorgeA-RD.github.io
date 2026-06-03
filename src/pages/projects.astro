@@ -4,8 +4,146 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { SITE_TITLE } from '../consts';
 import projectsData from '../data/projects.json';
+import bibFileRaw from '../data/publications.bib?raw';
 
-const projects = projectsData.sort((a, b) => b.year - a.year);
+interface Author {
+	first: string;
+	last: string;
+}
+
+interface BibEntry {
+	type: string;
+	key: string;
+	fields: Record<string, string>;
+	authors: Author[];
+}
+
+interface NumberedEntry {
+	entry: BibEntry;
+	number: string;
+	primaryLabel: string;
+	primaryLink: string;
+	bibtex: string;
+}
+
+function parseBibTeX(input: string): BibEntry[] {
+	const entries: BibEntry[] = [];
+	const rawEntries = input.split(/@(\w+)\s*\{/g).slice(1);
+
+	for (let i = 0; i < rawEntries.length; i += 2) {
+		const type = rawEntries[i].trim().toLowerCase();
+		const body = rawEntries[i + 1];
+		if (!body) continue;
+
+		const keyMatch = body.match(/^\s*([^,]+),/);
+		const key = keyMatch ? keyMatch[1].trim() : 'unknown';
+		const fields: Record<string, string> = { title: 'Untitled', year: '0000' };
+		const fieldRegex = /(\w+)\s*=\s*(?:\{((?:[^{}]|{[^{}]*})*)\}|"((?:[^"]|\\")*)"|(\d+))/g;
+
+		let match;
+		while ((match = fieldRegex.exec(body)) !== null) {
+			const fieldKey = match[1].toLowerCase();
+			const val = match[2] || match[3] || match[4] || '';
+			fields[fieldKey] = val.replace(/\s+/g, ' ').trim();
+		}
+
+		let authors: Author[] = [];
+		if (fields.author) {
+			authors = fields.author.split(/\s+and\s+/i).map(str => {
+				const parts = str.split(',');
+				if (parts.length > 1) {
+					return { first: parts[1].trim(), last: parts[0].trim() };
+				}
+				const names = str.trim().split(' ');
+				const last = names.pop() || '';
+				const first = names.join(' ');
+				return { first, last };
+			});
+		}
+
+		entries.push({ type, key, fields, authors });
+	}
+	return entries;
+}
+
+const clean = (value?: string) => (value || '').replace(/[{}]/g, '');
+const yearValue = (entry: BibEntry) => parseInt(entry.fields.year) || 0;
+const sortNewestFirst = (entries: BibEntry[]) => [...entries].sort((a, b) => yearValue(b) - yearValue(a));
+
+const formatAuthor = (auth: Author) => auth.first ? `${auth.first} ${auth.last}` : auth.last;
+
+const getVenue = (entry: BibEntry) => clean(
+	entry.fields.journal ||
+	entry.fields.booktitle ||
+	entry.fields.publisher ||
+	entry.fields.school ||
+	entry.fields.note ||
+	'Preprint'
+);
+
+const getPrimaryLink = (entry: BibEntry) => {
+	if (entry.fields.doi) return `https://doi.org/${entry.fields.doi}`;
+	if (entry.fields.url) return entry.fields.url;
+	if (entry.fields.pdf) return entry.fields.pdf;
+	return '';
+};
+
+const getPrimaryLabel = (entry: BibEntry) => {
+	if (entry.type === 'phdthesis' || entry.type === 'mastersthesis') return 'Repository';
+	if (entry.fields.doi) return 'DOI';
+	if (entry.fields.url) return 'Link';
+	if (entry.fields.pdf) return 'PDF';
+	return '';
+};
+
+const makeBibTeX = (entry: BibEntry) => {
+	const lines = [
+		`@${entry.type}{${entry.key},`,
+		`  title={${entry.fields.title}},`,
+		`  author={${entry.fields.author || ''}},`,
+	];
+
+	if (entry.fields.journal) lines.push(`  journal={${entry.fields.journal}},`);
+	if (entry.fields.booktitle) lines.push(`  booktitle={${entry.fields.booktitle}},`);
+	if (entry.fields.school) lines.push(`  school={${entry.fields.school}},`);
+	if (entry.fields.note) lines.push(`  note={${entry.fields.note}},`);
+	if (entry.fields.url) lines.push(`  url={${entry.fields.url}},`);
+	if (entry.fields.doi) lines.push(`  doi={${entry.fields.doi}},`);
+	lines.push(`  year={${entry.fields.year}}`);
+	lines.push('}');
+
+	return lines.join('\n');
+};
+
+const allPublications = parseBibTeX(bibFileRaw);
+const publicationSections = [
+	{ prefix: 'J', entries: sortNewestFirst(allPublications.filter(entry => entry.type === 'article')) },
+	{ prefix: 'C', entries: sortNewestFirst(allPublications.filter(entry => entry.type === 'inproceedings' || entry.type === 'conference')) },
+	{ prefix: 'P', entries: sortNewestFirst(allPublications.filter(entry => entry.type === 'unpublished' || entry.type === 'preprint')) },
+	{ prefix: 'T', entries: sortNewestFirst(allPublications.filter(entry => entry.type === 'phdthesis' || entry.type === 'mastersthesis')) },
+];
+
+const publicationMap = new Map<string, NumberedEntry>();
+publicationSections.forEach(section => {
+	section.entries.forEach((entry, index) => {
+		publicationMap.set(entry.key, {
+			entry,
+			number: `[${section.prefix}${index + 1}]`,
+			primaryLabel: getPrimaryLabel(entry),
+			primaryLink: getPrimaryLink(entry),
+			bibtex: makeBibTeX(entry),
+		});
+	});
+});
+
+const projects = projectsData
+	.sort((a, b) => b.year - a.year)
+	.map(project => ({
+		...project,
+		resolvedOutputs: (project.outputs || [])
+			.map(key => publicationMap.get(key))
+			.filter((output): output is NumberedEntry => Boolean(output)),
+	}));
 ---
 
 <!doctype html>
@@ -49,22 +187,14 @@ const projects = projectsData.sort((a, b) => b.year - a.year);
 			.project-item:last-child {
 				border-bottom: 1px solid var(--color-border);
 			}
-			.project-kicker {
-				display: flex;
-				flex-wrap: wrap;
-				gap: 0.6rem;
-				align-items: center;
+			.project-period {
+				display: block;
 				margin-bottom: 0.65rem;
 				font-size: 0.78rem;
 				font-weight: 700;
 				letter-spacing: 0.08em;
 				text-transform: uppercase;
-			}
-			.project-period {
 				color: var(--color-accent);
-			}
-			.project-status {
-				color: var(--color-text-muted);
 			}
 			.project-item h2 {
 				font-family: var(--font-serif);
@@ -93,26 +223,66 @@ const projects = projectsData.sort((a, b) => b.year - a.year);
 				padding: 0;
 				margin: 0;
 				display: grid;
-				gap: 0.55rem;
+				gap: 0.65rem;
 			}
-			.output-item {
+			.output-details {
+				border: 1px solid var(--color-border);
+				border-radius: 0.75rem;
+				background: var(--color-bg-offset);
+			}
+			.output-details summary {
+				cursor: pointer;
+				list-style: none;
+				padding: 0.85rem 1rem;
+				display: flex;
+				gap: 0.75rem;
+				align-items: baseline;
+			}
+			.output-details summary::-webkit-details-marker {
+				display: none;
+			}
+			.output-number {
+				font-weight: 800;
+				color: var(--color-accent);
+				white-space: nowrap;
+			}
+			.output-title {
+				font-weight: 600;
+				color: var(--color-text-main);
+				line-height: 1.45;
+			}
+			.output-panel {
+				padding: 0 1rem 1rem 2.8rem;
 				color: var(--color-text-muted);
-				line-height: 1.55;
+				line-height: 1.6;
 			}
-			.output-type {
+			.output-meta {
+				margin: 0 0 0.55rem;
+			}
+			.output-authors {
+				margin: 0 0 0.45rem;
+			}
+			.output-link {
+				display: inline-block;
 				font-weight: 700;
-				color: var(--color-text-main);
+				margin-bottom: 0.75rem;
 			}
-			.output-item a {
-				color: var(--color-text-main);
-				font-weight: 500;
-				text-decoration-thickness: 1px;
-				text-underline-offset: 0.18em;
+			.output-panel pre {
+				margin: 0;
+				padding: 0.85rem;
+				overflow-x: auto;
+				border-radius: 0.5rem;
+				background: var(--color-bg-main);
+				border: 1px solid var(--color-border);
+				font-size: 0.82rem;
+				line-height: 1.45;
 			}
 			@media (max-width: 768px) {
 				.projects-hero h1 { font-size: 2.5rem; }
 				.project-item h2 { font-size: 1.45rem; }
 				.project-item { padding: 1.6rem 0; }
+				.output-details summary { align-items: flex-start; }
+				.output-panel { padding-left: 1rem; }
 			}
 		</style>
 	</head>
@@ -121,31 +291,35 @@ const projects = projectsData.sort((a, b) => b.year - a.year);
 		<main class="projects-section">
 			<div class="projects-hero">
 				<h1>Research Projects</h1>
-				<p>Research lines connecting robot behavior learning, reinforcement learning from expert demonstrations, imitation learning, and neural network-based robot control.</p>
+				<p>Academic projects, research lines, and collaborations connected to my work in artificial intelligence and robotics.</p>
 			</div>
 
 			<ul class="projects-list">
 				{projects.length > 0 ? projects.map((project) => (
 					<li class="project-item" id={project.id}>
-						<div class="project-kicker">
-							<span class="project-period">{project.period}</span>
-							<span aria-hidden="true">·</span>
-							<span class="project-status">{project.status}</span>
-						</div>
+						<span class="project-period">{project.period}</span>
 						<h2>{project.title}</h2>
 						<p class="project-description">{project.description}</p>
-						{project.outputs && project.outputs.length > 0 && (
+						{project.resolvedOutputs.length > 0 && (
 							<div class="project-outputs">
 								<h3 class="outputs-title">Associated outputs</h3>
 								<ul class="outputs-list">
-									{project.outputs.map((output) => (
-										<li class="output-item">
-											<span class="output-type">{output.type}:</span>{' '}
-											{output.href ? (
-												<a href={output.href} target="_blank" rel="noopener noreferrer">{output.label}</a>
-											) : (
-												<span>{output.label}</span>
-											)}
+									{project.resolvedOutputs.map((output) => (
+										<li>
+											<details name="project-output" class="output-details">
+												<summary>
+													<span class="output-number">{output.number}</span>
+													<span class="output-title">{clean(output.entry.fields.title)}</span>
+												</summary>
+												<div class="output-panel">
+													<p class="output-authors">
+														{output.entry.authors.map(formatAuthor).join(', ')}
+													</p>
+													<p class="output-meta">{getVenue(output.entry)}{output.entry.fields.year && <span>, {output.entry.fields.year}</span>}</p>
+													{output.primaryLink && <a class="output-link" href={output.primaryLink} target="_blank" rel="noopener noreferrer">{output.primaryLabel}</a>}
+													<pre>{output.bibtex}</pre>
+												</div>
+											</details>
 										</li>
 									))}
 								</ul>

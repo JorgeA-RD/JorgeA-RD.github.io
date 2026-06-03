@@ -4,34 +4,13 @@
     "title": "Behavior Learning with Reinforcement Learning from Expert Demonstrations",
     "period": "2019–2024",
     "year": 2024,
-    "status": "Doctoral research line",
     "description": "Proposed, developed, and tested deep reinforcement learning algorithms combining expert demonstrations for controlling redundant robot manipulators, with research focused on biased exploration algorithms to guide the RL process through explicit exploration demonstrations.",
     "outputs": [
-      {
-        "type": "PhD thesis",
-        "label": "Robot Behavior Learning through Biased Exploration in Reinforcement Learning from Expert Demonstrations",
-        "href": "https://repositorio.cinvestav.mx/handle/cinvestav/5429"
-      },
-      {
-        "type": "Journal article",
-        "label": "Reinforcement learning from expert demonstrations with application to redundant robot control",
-        "href": "https://doi.org/10.1016/j.engappai.2022.105753"
-      },
-      {
-        "type": "Survey article",
-        "label": "Model-free reinforcement learning from expert demonstrations: a survey",
-        "href": "https://doi.org/10.1007/s10462-021-10085-1"
-      },
-      {
-        "type": "Conference paper",
-        "label": "Safe Exploration in Reinforcement Learning for Learning from Human Experts",
-        "href": "https://doi.org/10.1109/aibthings58340.2023.10292489"
-      },
-      {
-        "type": "Conference paper",
-        "label": "Redundant robot control with learning from expert demonstrations",
-        "href": "https://doi.org/10.1109/ssci51031.2022.10022138"
-      }
+      "ramirez2024phd",
+      "ramirez2023rlrobotcontrol",
+      "ramirez2022survey",
+      "ramirez2023safeexploration",
+      "ramirez2022redundant"
     ]
   },
   {
@@ -39,19 +18,10 @@
     "title": "Human Behavior Learning with Imitation Learning",
     "period": "2017–2019",
     "year": 2019,
-    "status": "Master's research line",
     "description": "Implemented and analyzed feed-forward neural networks for imitating human behavior in robot manipulator control, contributing to advancements in joint space learning and neural network applications in robotics.",
     "outputs": [
-      {
-        "type": "Master's thesis",
-        "label": "Aprendizaje del Comportamiento Humano en el Espacio Articular del Robot Utilizando Redes Neuronales",
-        "href": "https://repositorio.cinvestav.mx/handle/cinvestav/2258"
-      },
-      {
-        "type": "Conference paper",
-        "label": "Human Behavior Learning in Joint Space Using Dynamic Time Warping and Neural Networks",
-        "href": "https://doi.org/10.1109/iceee.2019.8884501"
-      }
+      "ramirez2019master",
+      "ramirez2019humanbehavior"
     ]
   }
 ]
