@@ -1,38 +1,57 @@
 [
   {
-    "id": "surface-emg-human-motor-intention",
-    "title": "Surface EMG-Based Wrist and Hand Estimation",
-    "description": "Postdoctoral research at the Universidad Autónoma de Querétaro focused on continuous surface electromyography-based wrist and hand estimation, system identification, and human motor intention modeling.",
-    "year": 2026,
-    "status": "Active",
-    "authors": ["jorge-ramirez"],
-    "heroImage": "/src/assets/blog-placeholder-2.jpg"
-  },
-  {
-    "id": "reinforcement-learning-from-demonstrations",
-    "title": "Reinforcement Learning from Expert Demonstrations",
-    "description": "Development of reinforcement learning and imitation learning methods that incorporate expert demonstrations to guide exploration and improve robot behavior learning.",
+    "id": "behavior-learning-rl-expert-demonstrations",
+    "title": "Behavior Learning with Reinforcement Learning from Expert Demonstrations",
+    "period": "2019–2024",
     "year": 2024,
-    "status": "Ongoing line",
-    "authors": ["jorge-ramirez"],
-    "heroImage": "/src/assets/blog-placeholder-3.jpg"
+    "status": "Doctoral research line",
+    "description": "Proposed, developed, and tested deep reinforcement learning algorithms combining expert demonstrations for controlling redundant robot manipulators, with research focused on biased exploration algorithms to guide the RL process through explicit exploration demonstrations.",
+    "outputs": [
+      {
+        "type": "PhD thesis",
+        "label": "Robot Behavior Learning through Biased Exploration in Reinforcement Learning from Expert Demonstrations",
+        "href": "https://repositorio.cinvestav.mx/handle/cinvestav/5429"
+      },
+      {
+        "type": "Journal article",
+        "label": "Reinforcement learning from expert demonstrations with application to redundant robot control",
+        "href": "https://doi.org/10.1016/j.engappai.2022.105753"
+      },
+      {
+        "type": "Survey article",
+        "label": "Model-free reinforcement learning from expert demonstrations: a survey",
+        "href": "https://doi.org/10.1007/s10462-021-10085-1"
+      },
+      {
+        "type": "Conference paper",
+        "label": "Safe Exploration in Reinforcement Learning for Learning from Human Experts",
+        "href": "https://doi.org/10.1109/aibthings58340.2023.10292489"
+      },
+      {
+        "type": "Conference paper",
+        "label": "Redundant robot control with learning from expert demonstrations",
+        "href": "https://doi.org/10.1109/ssci51031.2022.10022138"
+      }
+    ]
   },
   {
-    "id": "robust-multi-agent-rl",
-    "title": "Robust Multi-Agent Policy Optimization",
-    "description": "Collaboration on robust multi-agent policy optimization via reinforcement learning under model uncertainty.",
-    "year": 2026,
-    "status": "Manuscript in progress",
-    "authors": ["jorge-ramirez"],
-    "heroImage": "/src/assets/blog-placeholder-4.jpg"
-  },
-  {
-    "id": "traffic-accident-data-analysis",
-    "title": "Traffic Accident Data Analysis",
-    "description": "Data analysis project with accident database records, focused on extracting useful metrics and patterns for applied research.",
-    "year": 2026,
-    "status": "Exploratory collaboration",
-    "authors": ["jorge-ramirez"],
-    "heroImage": "/src/assets/blog-placeholder-5.jpg"
+    "id": "human-behavior-learning-imitation-learning",
+    "title": "Human Behavior Learning with Imitation Learning",
+    "period": "2017–2019",
+    "year": 2019,
+    "status": "Master's research line",
+    "description": "Implemented and analyzed feed-forward neural networks for imitating human behavior in robot manipulator control, contributing to advancements in joint space learning and neural network applications in robotics.",
+    "outputs": [
+      {
+        "type": "Master's thesis",
+        "label": "Aprendizaje del Comportamiento Humano en el Espacio Articular del Robot Utilizando Redes Neuronales",
+        "href": "https://repositorio.cinvestav.mx/handle/cinvestav/2258"
+      },
+      {
+        "type": "Conference paper",
+        "label": "Human Behavior Learning in Joint Space Using Dynamic Time Warping and Neural Networks",
+        "href": "https://doi.org/10.1109/iceee.2019.8884501"
+      }
+    ]
   }
 ]
