@@ -172,7 +172,6 @@ const makeBibTeX = (entry: BibEntry) => {
                                         </div>
                                         <div class="pub-links">
                                             {primaryLink && <a href={primaryLink} target="_blank" rel="noopener noreferrer">Article</a>}
-                                            {entry.fields.doi && <a href={`https://doi.org/${entry.fields.doi}`} target="_blank" rel="noopener noreferrer">DOI</a>}
                                             {entry.fields.pdf && <a href={entry.fields.pdf} target="_blank" rel="noopener noreferrer">PDF</a>}
                                             <details name="bibtex" class="bibtex-details">
                                                 <summary>BibTeX</summary>
