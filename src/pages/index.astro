@@ -66,9 +66,9 @@ function parseBibTeX(input: string): BibEntry[] {
     return entries;
 }
 
-const publications = parseBibTeX(bibFileRaw).sort((a, b) => {
+const publications = parseBibTeX(bibFileRaw).filter((entry) => entry.type === 'article').sort((a, b) => {
     return (parseInt(b.fields.year) || 0) - (parseInt(a.fields.year) || 0);
-}).slice(0, 3);
+}).slice(0, 2);
 
 const formatAuthor = (auth: Author) => auth.first ? `${auth.first} ${auth.last}` : auth.last;
 ---
@@ -189,7 +189,7 @@ const formatAuthor = (auth: Author) => auth.first ? `${auth.first} ${auth.last}`
 		<main>
 			<section class="hero">
 				<div class="hero-content">
-					<h1 style="margin-bottom: 0.5rem; font-size: 3rem;">Jorge Armando Ramírez Díaz</h1>
+					<h1 style="margin-bottom: 0.5rem; font-size: 3rem;">Jorge Armando Ramirez Diaz</h1>
 					<div class="tagline">
 						Postdoctoral Research Fellow<br/>
 						Universidad Autónoma de Querétaro
@@ -217,7 +217,7 @@ const formatAuthor = (auth: Author) => auth.first ? `${auth.first} ${auth.last}`
 					</div>
 				</div>
 				<div class="hero-image">
-					<Image src={url('/jorge-ramirez.jpeg')} width={280} height={280} alt="Jorge Armando Ramírez Díaz" fetchpriority="high" decoding="async" />
+					<Image src={url('/jorge-ramirez.jpeg')} width={280} height={280} alt="Jorge Armando Ramirez Diaz" fetchpriority="high" decoding="async" />
 				</div>
 			</section>
 
