@@ -170,6 +170,13 @@ const formatAuthor = (auth: Author) => auth.first ? `${auth.first} ${auth.last}`
             }
             .background-list li {
                 margin-bottom: 0.35rem;
+                padding-left: 0.85rem;
+                position: relative;
+            }
+            .background-list li::before {
+                content: '–';
+                left: 0;
+                position: absolute;
             }
             .background-list li:last-child {
                 margin-bottom: 0;
@@ -291,8 +298,8 @@ const formatAuthor = (auth: Author) => auth.first ? `${auth.first} ${auth.last}`
                         <div class="background-group">
                             <h3>Education</h3>
                             <ul class="background-list">
-                                <li>Ph.D. in Sciences, Automatic Control, Departamento de Control Automático, Centro de Investigación y de Estudios Avanzados del Instituto Politécnico Nacional (CINVESTAV-IPN), 2019–2023.</li>
-                                <li>M.Sc. in Sciences, Automatic Control, Departamento de Control Automático, Centro de Investigación y de Estudios Avanzados del Instituto Politécnico Nacional (CINVESTAV-IPN), 2017–2019.</li>
+                                <li>Ph.D. in Automatic Control, Departamento de Control Automático, Centro de Investigación y de Estudios Avanzados del Instituto Politécnico Nacional (CINVESTAV-IPN), 2019–2023.</li>
+                                <li>M.Sc. in Automatic Control, Departamento de Control Automático, Centro de Investigación y de Estudios Avanzados del Instituto Politécnico Nacional (CINVESTAV-IPN), 2017–2019.</li>
                                 <li>B.Eng. in Mechatronics Engineering, Tecnológico Nacional de México / Instituto Tecnológico de Querétaro (TecNM/ITQ), 2011–2016.</li>
                             </ul>
                         </div>
