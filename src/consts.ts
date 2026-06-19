@@ -2,7 +2,7 @@
 // You can import this data from anywhere in your site by using the `import` keyword.
 
 export const SITE_TITLE = 'Jorge Ramirez';
-export const SITE_DESCRIPTION = 'Postdoctoral Research Fellow at UAQ.';
+export const SITE_DESCRIPTION = '';
 
 export const CONTACT = {
   organization: 'Universidad Autónoma de Querétaro',
