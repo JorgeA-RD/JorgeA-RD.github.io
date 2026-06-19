@@ -1,5 +1,25 @@
 [
   {
+    "id": "world-models-robust-adaptive-emg-control",
+    "title": "World Models for Robust and Adaptive Intelligent Control under Electromyographic Signals",
+    "period": "2026–present",
+    "year": 2026,
+    "description": "Studying compact world models for robust and adaptive intelligent control under noisy, partial, and non-stationary electromyographic signals. The project uses an open myoelectric upper-limb prosthesis platform as a reproducible testbed to investigate latent representations, uncertainty estimation, model-based reinforcement learning, and multisession adaptation for EMG-based control.",
+    "outputs": [
+      "ramirez2026semtaxonomy"
+    ]
+  },
+  {
+    "id": "game-theoretic-foundations-robust-marl",
+    "title": "Game-Theoretic Foundations for Robust Multi-Agent Reinforcement Learning",
+    "period": "2025–present",
+    "year": 2025,
+    "description": "Developing robust multi-agent reinforcement learning methods grounded in game theory. The project studies how different game equilibria can improve robustness under diverse stress conditions, model uncertainty, and changing environmental dynamics.",
+    "outputs": [
+      "ramirez2026robustmarl"
+    ]
+  },
+  {
     "id": "behavior-learning-rl-expert-demonstrations",
     "title": "Behavior Learning with Reinforcement Learning from Expert Demonstrations",
     "period": "2019–2024",
