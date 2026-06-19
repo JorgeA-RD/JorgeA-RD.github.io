@@ -86,7 +86,7 @@ const formatAuthor = (auth: Author) => auth.first ? `${auth.first} ${auth.last}`
 				margin-bottom: 0;
 			}
 			.hero-content { flex: 3; }
-			.hero-image { flex: 2; text-align: center; position: relative; }
+			.hero-image { flex: 2; align-items: center; display: flex; flex-direction: column; position: relative; text-align: center; }
 			.hero-image img {
 				width: 280px;
 				height: 280px;
@@ -137,12 +137,13 @@ const formatAuthor = (auth: Author) => auth.first ? `${auth.first} ${auth.last}`
                 padding: 0.35rem 0.75rem;
             }
             .academic-background {
-                margin: 0 0 1.75rem;
-                max-width: 760px;
+                margin: 1.5rem 0 0;
+                max-width: 360px;
+                text-align: left;
             }
             .academic-background h2 {
                 font-family: var(--font-sans);
-                font-size: 0.95rem;
+                font-size: 0.9rem;
                 letter-spacing: 0.05em;
                 margin: 0 0 0.85rem;
                 text-transform: uppercase;
@@ -161,8 +162,8 @@ const formatAuthor = (auth: Author) => auth.first ? `${auth.first} ${auth.last}`
             }
             .background-list {
                 color: var(--color-text-muted);
-                font-size: 0.95rem;
-                line-height: 1.55;
+                font-size: 0.88rem;
+                line-height: 1.5;
                 list-style: none;
                 margin: 0;
                 padding: 0;
@@ -262,24 +263,6 @@ const formatAuthor = (auth: Author) => auth.first ? `${auth.first} ${auth.last}`
                         <li>World Models</li>
                         <li>Supervised Learning</li>
                     </ul>
-                    <section class="academic-background" aria-labelledby="academic-background-title">
-                        <h2 id="academic-background-title">Academic Background</h2>
-                        <div class="background-group">
-                            <h3>Current Positions</h3>
-                            <ul class="background-list">
-                                <li>Postdoctoral Research Fellow, Facultad de Ingeniería, Universidad Autónoma de Querétaro (UAQ), 2026–present.</li>
-                                <li>Lecturer, Escuela Nacional de Estudios Superiores Unidad Juriquilla, Universidad Nacional Autónoma de México (UNAM), 2026–present.</li>
-                            </ul>
-                        </div>
-                        <div class="background-group">
-                            <h3>Education</h3>
-                            <ul class="background-list">
-                                <li>Ph.D. in Sciences, Automatic Control, Departamento de Control Automático, Centro de Investigación y de Estudios Avanzados del Instituto Politécnico Nacional (CINVESTAV-IPN), 2019–2023.</li>
-                                <li>M.Sc. in Sciences, Automatic Control, Departamento de Control Automático, Centro de Investigación y de Estudios Avanzados del Instituto Politécnico Nacional (CINVESTAV-IPN), 2017–2019.</li>
-                                <li>B.Eng. in Mechatronics Engineering, Tecnológico Nacional de México / Instituto Tecnológico de Querétaro (TecNM/ITQ), 2011–2016.</li>
-                            </ul>
-                        </div>
-                    </section>
                     <div class="social-inline">
                         {SOCIAL_LINKS.filter((link) => link.label !== 'Email').map((link) => (
                             <a href={link.href} target="_blank" rel="noopener noreferrer">{link.label}</a>
@@ -296,6 +279,24 @@ const formatAuthor = (auth: Author) => auth.first ? `${auth.first} ${auth.last}`
 				</div>
 				<div class="hero-image">
 					<Image src={url('/jorge-ramirez.jpeg')} width={280} height={280} alt="Jorge Armando Ramirez Diaz" fetchpriority="high" decoding="async" />
+                    <section class="academic-background" aria-labelledby="background-title">
+                        <h2 id="background-title">Background</h2>
+                        <div class="background-group">
+                            <h3>Current Positions</h3>
+                            <ul class="background-list">
+                                <li>Postdoctoral Research Fellow, Facultad de Ingeniería, Universidad Autónoma de Querétaro (UAQ), 2026–present.</li>
+                                <li>Lecturer, Escuela Nacional de Estudios Superiores Unidad Juriquilla, Universidad Nacional Autónoma de México (UNAM), 2026–present.</li>
+                            </ul>
+                        </div>
+                        <div class="background-group">
+                            <h3>Education</h3>
+                            <ul class="background-list">
+                                <li>Ph.D. in Sciences, Automatic Control, Departamento de Control Automático, Centro de Investigación y de Estudios Avanzados del Instituto Politécnico Nacional (CINVESTAV-IPN), 2019–2023.</li>
+                                <li>M.Sc. in Sciences, Automatic Control, Departamento de Control Automático, Centro de Investigación y de Estudios Avanzados del Instituto Politécnico Nacional (CINVESTAV-IPN), 2017–2019.</li>
+                                <li>B.Eng. in Mechatronics Engineering, Tecnológico Nacional de México / Instituto Tecnológico de Querétaro (TecNM/ITQ), 2011–2016.</li>
+                            </ul>
+                        </div>
+                    </section>
 				</div>
 			</section>
 
