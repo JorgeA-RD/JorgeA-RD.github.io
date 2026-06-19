@@ -101,6 +101,24 @@ const formatAuthor = (auth: Author) => auth.first ? `${auth.first} ${auth.last}`
             .pub-title { font-weight: 700; color: var(--color-text-main); display: block; margin-bottom: 0.25rem; font-family: var(--font-serif); font-size: 1.1rem; }
             .pub-meta { font-size: 0.9rem; color: var(--color-text-muted); }
 			.hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
+            .outreach-note {
+                margin-top: 1.25rem;
+                padding: 1.25rem 1.5rem;
+                border: 1px solid var(--color-border);
+                border-radius: 16px;
+                background: var(--color-bg-offset);
+                max-width: 560px;
+            }
+            .outreach-note p {
+                color: var(--color-text-muted);
+                font-size: 0.98rem;
+                line-height: 1.65;
+                margin: 0 0 0.85rem;
+            }
+            .outreach-note .btn {
+                font-size: 0.9rem;
+                padding: 0.55rem 0.95rem;
+            }
             .social-inline { display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 0 0 2rem; }
             .social-inline a { font-size: 0.95rem; font-weight: 600; }
             .research-interests {
@@ -179,6 +197,7 @@ const formatAuthor = (auth: Author) => auth.first ? `${auth.first} ${auth.last}`
 				.hero { flex-direction: column-reverse; text-align: center; padding: 2rem 0; gap: 2rem; }
                 .hero-image img { width: 200px; height: 200px; }
                 .hero-buttons, .social-inline, .research-interests { justify-content: center; }
+                .outreach-note { margin-left: auto; margin-right: auto; }
                 .profile-grid { grid-template-columns: 1fr; }
                 .profile-panel { padding: 1.5rem; }
 			}
@@ -215,6 +234,10 @@ const formatAuthor = (auth: Author) => auth.first ? `${auth.first} ${auth.last}`
 						<a href={url('/publications')} class="btn">View Publications</a>
 						<a href={url('/projects')} class="btn btn-outline">Current Projects</a>
 					</div>
+                    <div class="outreach-note">
+                        <p>I share accessible robotics and AI content in Spanish through my channel <em>El Robot Barato</em>.</p>
+                        <a href="https://www.instagram.com/robot_barato/" class="btn btn-outline" target="_blank" rel="noopener noreferrer">Visit El Robot Barato</a>
+                    </div>
 				</div>
 				<div class="hero-image">
 					<Image src={url('/jorge-ramirez.jpeg')} width={280} height={280} alt="Jorge Armando Ramirez Diaz" fetchpriority="high" decoding="async" />
