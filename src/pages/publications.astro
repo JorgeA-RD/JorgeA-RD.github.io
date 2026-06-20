@@ -156,7 +156,7 @@ const makeBibTeX = (entry: BibEntry) => {
                             const bibtex = makeBibTeX(entry);
                             return (
                                 <li class="publication-item compact-publication">
-                                    <span class="pub-number">[{section.prefix}{index + 1}]</span>
+                                    <span class="pub-number">[{section.prefix}{section.entries.length - index}]</span>
                                     <div class="pub-content">
                                         <span class="pub-title">{clean(entry.fields.title)}</span>
                                         <div class="pub-authors">
