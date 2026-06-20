@@ -128,7 +128,7 @@ publicationSections.forEach(section => {
 	section.entries.forEach((entry, index) => {
 		publicationMap.set(entry.key, {
 			entry,
-			number: `[${section.prefix}${index + 1}]`,
+			number: `[${section.prefix}${section.entries.length - index}]`,
 			primaryLabel: getPrimaryLabel(entry),
 			primaryLink: getPrimaryLink(entry),
 			bibtex: makeBibTeX(entry),
@@ -162,14 +162,14 @@ const projects = projectsData
 			}
 			.projects-hero h1 {
 				font-family: var(--font-serif);
-				font-size: 3.2rem;
+				font-size: 2.5rem;
 				margin: 0 0 1rem;
 				color: var(--color-text-main);
 				letter-spacing: -0.02em;
 				line-height: 1.2;
 			}
 			.projects-hero p {
-				font-size: 1.08rem;
+				font-size: 1rem;
 				color: var(--color-text-muted);
 				max-width: 760px;
 				line-height: 1.7;
@@ -190,7 +190,7 @@ const projects = projectsData
 			.project-period {
 				display: block;
 				margin-bottom: 0.65rem;
-				font-size: 0.78rem;
+				font-size: 0.82rem;
 				font-weight: 700;
 				letter-spacing: 0.08em;
 				text-transform: uppercase;
@@ -198,20 +198,20 @@ const projects = projectsData
 			}
 			.project-item h2 {
 				font-family: var(--font-serif);
-				font-size: 1.7rem;
-				line-height: 1.3;
-				margin: 0 0 0.75rem;
+				font-size: 0.98rem;
+				line-height: 1.42;
+				margin: 0 0 0.35rem;
 				color: var(--color-text-main);
 			}
 			.project-description {
 				color: var(--color-text-muted);
-				font-size: 1rem;
-				line-height: 1.7;
+				font-size: 0.92rem;
+				line-height: 1.42;
 				max-width: 860px;
 				margin: 0 0 1.25rem;
 			}
 			.outputs-title {
-				font-size: 0.86rem;
+				font-size: 0.82rem;
 				font-weight: 700;
 				letter-spacing: 0.06em;
 				text-transform: uppercase;
@@ -299,7 +299,7 @@ const projects = projectsData
 			}
 			@media (max-width: 768px) {
 				.projects-hero h1 { font-size: 2.5rem; }
-				.project-item h2 { font-size: 1.45rem; }
+				.project-item h2 { font-size: 0.98rem; }
 				.project-item { padding: 1.6rem 0; }
 				.output-panel { width: min(420px, 86vw); }
 			}
