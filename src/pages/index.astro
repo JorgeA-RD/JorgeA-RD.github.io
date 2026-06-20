@@ -119,7 +119,7 @@ const formatAuthor = (auth: Author) => auth.first ? `${auth.first} ${auth.last}`
                 font-size: 0.9rem;
                 padding: 0.55rem 0.95rem;
             }
-            .social-inline { display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 0 0 2rem; }
+            .social-inline { display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 0 0 0.25rem; }
             .social-inline a { font-size: 0.95rem; font-weight: 600; }
             .research-interests {
                 display: flex;
@@ -141,7 +141,8 @@ const formatAuthor = (auth: Author) => auth.first ? `${auth.first} ${auth.last}`
                 max-width: 360px;
                 text-align: left;
             }
-            .academic-background h2 {
+            .academic-background h2,
+            .hero-subtitle {
                 font-family: var(--font-sans);
                 font-size: 0.9rem;
                 letter-spacing: 0.05em;
@@ -257,6 +258,7 @@ const formatAuthor = (auth: Author) => auth.first ? `${auth.first} ${auth.last}`
 					<p style="font-size: 1.1rem; line-height: 1.7; margin-bottom: 1.5rem;">
 						I am a scientist specializing in artificial intelligence and robotics, with a strong focus on developing machine learning algorithms and deploying them in robotic systems.
 					</p>
+                    <h2 class="hero-subtitle">Research Interests</h2>
                     <ul class="research-interests" aria-label="Research interests">
                         <li>Artificial intelligence</li>
                         <li>Robotics</li>
@@ -266,15 +268,12 @@ const formatAuthor = (auth: Author) => auth.first ? `${auth.first} ${auth.last}`
                         <li>World Models</li>
                         <li>Supervised Learning</li>
                     </ul>
+                    <h2 class="hero-subtitle">Connect with me</h2>
                     <div class="social-inline">
                         {SOCIAL_LINKS.filter((link) => link.label !== 'Email').map((link) => (
                             <a href={link.href} target="_blank" rel="noopener noreferrer">{link.label}</a>
                         ))}
                     </div>
-					<div class="hero-buttons">
-						<a href={url('/publications')} class="btn">View Publications</a>
-						<a href={url('/projects')} class="btn btn-outline">Current Projects</a>
-					</div>
                     <div class="outreach-note">
                         <p>I share accessible robotics and AI content in Spanish through my channel <em>El Robot Barato</em>.</p>
                         <a href="https://www.instagram.com/robot_barato/" class="btn btn-outline" target="_blank" rel="noopener noreferrer">Visit El Robot Barato</a>
