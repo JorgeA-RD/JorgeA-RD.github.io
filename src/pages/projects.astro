@@ -155,25 +155,10 @@ const projects = projectsData
 				max-width: var(--max-width);
 				margin: 0 auto;
 			}
-			.projects-hero {
-				text-align: left;
-				margin-bottom: 3rem;
-				padding: 2rem 0 1rem;
-			}
-			.projects-hero h1 {
-				font-family: var(--font-serif);
-				font-size: 2.5rem;
-				margin: 0 0 1rem;
-				color: var(--color-text-main);
-				letter-spacing: -0.02em;
-				line-height: 1.2;
-			}
-			.projects-hero p {
-				font-size: 1rem;
+			.projects-intro {
+				margin-bottom: 2rem;
 				color: var(--color-text-muted);
-				max-width: 760px;
-				line-height: 1.7;
-				margin: 0;
+				max-width: 720px;
 			}
 			.projects-list {
 				list-style: none;
@@ -298,7 +283,6 @@ const projects = projectsData
 				line-height: 1.45;
 			}
 			@media (max-width: 768px) {
-				.projects-hero h1 { font-size: 2.5rem; }
 				.project-item h2 { font-size: 0.98rem; }
 				.project-item { padding: 1.6rem 0; }
 				.output-panel { width: min(420px, 86vw); }
@@ -308,10 +292,8 @@ const projects = projectsData
 	<body>
 		<Header />
 		<main class="projects-section">
-			<div class="projects-hero">
-				<h1>Research Projects</h1>
-				<p>Academic projects, research lines, and collaborations connected to my work in artificial intelligence and robotics.</p>
-			</div>
+			<h1>Research Projects</h1>
+			<p class="projects-intro">Academic projects, research lines, and collaborations connected to my work in artificial intelligence and robotics.</p>
 
 			<ul class="projects-list">
 				{projects.length > 0 ? projects.map((project) => (
